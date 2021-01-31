@@ -14,6 +14,7 @@ class AppDrawer extends Drawer {
     'About Us',
     'History',
     'Settings',
+    'T&C',
     'Sign Out',
     'Exit',
   ];
@@ -22,6 +23,7 @@ class AppDrawer extends Drawer {
     Icons.info,
     Icons.book,
     Icons.settings,
+    Icons.privacy_tip,
     Icons.exit_to_app,
     Icons.power_settings_new,
   ];
@@ -30,6 +32,7 @@ class AppDrawer extends Drawer {
     aboutUs,
     history,
     settings,
+    policy,
   ];
 
   void tilesAction(BuildContext context, int index) {

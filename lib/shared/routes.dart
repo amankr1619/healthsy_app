@@ -7,6 +7,7 @@ import 'package:bug_busters/screens/eyeTest/eyetest.dart';
 import 'package:bug_busters/screens/heart/heart.dart';
 import 'package:bug_busters/screens/history.dart';
 import 'package:bug_busters/screens/liver/liver.dart';
+import 'package:bug_busters/screens/policy.dart';
 import 'package:bug_busters/screens/settings.dart';
 import 'package:bug_busters/screens/sugar/sugar.dart';
 import 'package:bug_busters/wrapper.dart';
@@ -25,6 +26,7 @@ const String earTest        = '/earTest';
 const String resultsScreen  = '/results';
 const String aboutUs        = '/aboutus';
 const String history        = '/history';
+const String policy         = '/policy';
 const String settings       = '/settings';
 
 Map<String, WidgetBuilder> routes = {
@@ -39,5 +41,6 @@ Map<String, WidgetBuilder> routes = {
   earTest       : (context) => EarTest(),
   aboutUs       : (context) => AboutUs(),
   history       : (context) => TestsHistory(),
+  policy        : (context) => TermsAndConditions(),
   settings      : (context) => SettingsScreen(),
 };

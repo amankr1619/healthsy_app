@@ -9,6 +9,11 @@ class AppDetails {
   static const String organization = '';
   static const String intro = '';
   static const String working = '';
+  static const String terms = '''Please read terms and conditions carefully. By enabling you will be agreeing to our T&Cs
+
+1. Predicting disease: One can easily predict the disease by simply entering the desired fields. The probability of prediction may vary in very rare cases, Our team will not be responsible for the same.
+
+2. Our Data Policy: Our application creates the database of medical history of patients that will be provided to external sources for study and analysis. Personal history including name, address, email and mobile number will be safe and not provided to any other institutions.''';
 }
 
 class RestAPI {
@@ -16,6 +21,7 @@ class RestAPI {
   static const sugarURL = 'https://mod-diabetes.herokuapp.com/';
   static const heartURL = 'https://mod-heart.herokuapp.com/';
   static const liverURL = 'https://mod-liver.herokuapp.com/';
+  static const streamrNetwork = 'https://healthsy-streamr-data-union.herokuapp.com/';
 }
 
 class Creator {
@@ -70,7 +76,7 @@ final List<Creator> creators = [
     name: 'Priyank Kumar Singh',
     role: 'App Developer',
     about: 'Student at Indian Institute of Information Technology, Nagpur',
-    github: 'https://www.github.com/kpriyanksingh',
+    github: 'https://www.github.com/priyank-kumar-singh',
     linkedin: 'https://www.linkedin.com/in/priyank-kumar-singh-9a7221193/',
     twitter: 'https://twitter.com/PRIYANKKUMARS18',
   ),

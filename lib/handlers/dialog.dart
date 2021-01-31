@@ -1,3 +1,4 @@
+import 'package:bug_busters/themes/decoration.dart';
 import 'package:flutter/material.dart';
 
 void handleAlertDialog({
@@ -5,6 +6,8 @@ void handleAlertDialog({
   @required String textContent,
   @required String actionTitle,
   @required Function action,
+  String title,
+  String cancelTitle = "Cancel",
 }) {
   showDialog(
     context: context,
@@ -12,13 +15,17 @@ void handleAlertDialog({
     builder: (context) {
       return AlertDialog(
         contentPadding: EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
+        title: title == null ? null : Text(
+          '$title',
+          style: kDefaultHeaderTextStyle,
+        ),
         content: Text(
           '$textContent',
           textAlign: TextAlign.justify,
         ),
         actions: [
           FlatButton(
-            child: Text('Cancel'),
+            child: Text('$cancelTitle'),
             onPressed: () => Navigator.pop(context),
           ),
           FlatButton(

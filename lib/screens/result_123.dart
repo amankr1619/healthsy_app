@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:bug_busters/models/message.dart';
 import 'package:bug_busters/services/firestore.dart';
 import 'package:bug_busters/themes/decoration.dart';
 import 'package:bug_busters/widgets/buttons.dart';
+import 'package:bug_busters/models/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -32,6 +34,8 @@ class TestResultsBody extends StatefulWidget {
 class _TestResultsBodyState extends State<TestResultsBody> {
   bool _isLoading = true;
   bool _isError = false;
+  bool _publishError = false;
+  bool showResult = false;
   bool _isFirebaseError = false;
   String message;
   http.Response response;
@@ -60,7 +64,7 @@ class _TestResultsBodyState extends State<TestResultsBody> {
     setState(() {
       _isError = false;
       _isLoading = true;
-      message = 'Please Wait while generating your report...';
+      message = 'Generating your report...';
     });
 
     try {
@@ -75,24 +79,87 @@ class _TestResultsBodyState extends State<TestResultsBody> {
         throw 'Internal server error: 500';
       } else if (response.statusCode == 200) {
         setState(() => message = 'Your results are here');
+        if (!widget.displayOnly) {
+          publishDataOnStreamrNetwork();
+        } else {
+          setState(() => _isLoading = false);
+        }
       }
     } on TimeoutException catch (e) {
       setError(e.message ?? 'Connection Timeout');
+      setState(() => _isLoading = false);
     } on PlatformException catch (e) {
       setError(e.message ?? 'Unknown Platform Error');
+      setState(() => _isLoading = false);
     } on SocketException catch (e) {
       setError(e.message ?? 'Unknown socket error');
+      setState(() => _isLoading = false);
     } catch (e) {
       setError(e.toString());
+      setState(() => _isLoading = false);
+    }
+  }
+
+  void publishDataOnStreamrNetwork() async {
+    setState(() {
+      _publishError = false;
+      _isLoading = true;
+      message = 'Publishing data to streamr network...';
+    });
+
+    String route = widget.type == 1 ? 'heart' : widget.type == 2 ? 'liver' : 'sugar';
+
+    Map<String, dynamic> data = json.decode(widget.body);
+    data.addAll({
+      'result' : getResultFromResponse(),
+    });
+    String body = json.encode(data);
+
+    try {
+       http.Response response = await http.post(
+        RestAPI.streamrNetwork + route,
+        headers: {"Content-Type": "application/json; charset=UTF-8"},
+        body: body,
+      ).timeout(Duration(seconds: 10));
+      if (response.statusCode == 400) {
+        throw 'Client error 400';
+      } else if (response.statusCode == 500) {
+        throw 'Internal server error: 500';
+      } else if (response.statusCode == 200) {
+        setState(() => message = 'Your results are here');
+      }
+    } on TimeoutException catch (e) {
+      setPublishError(e.message ?? 'Connection Timeout');
+    } on PlatformException catch (e) {
+      setPublishError(e.message ?? 'Unknown Platform Error');
+    } on SocketException catch (e) {
+      setPublishError(e.message ?? 'Unknown socket error');
+    } catch (e) {
+      setPublishError(e.toString());
     } finally {
       setState(() => _isLoading = false);
     }
+  }
+
+  String getResultFromResponse() {
+    int index = response.body.indexOf('S');
+    if (index > 4 || index == -1) {
+      return 'Good Health';
+    }
+    return 'Not Good';
   }
 
   void setError(String text) {
     setState(() {
       message = text;
       _isError = true;
+    });
+  }
+
+  void setPublishError(String text) {
+    setState(() {
+      message = text;
+      _publishError = true;
     });
   }
 
@@ -136,7 +203,7 @@ class _TestResultsBodyState extends State<TestResultsBody> {
               color: kDefaultThemeColor,
             ),
             replacement: Visibility(
-              visible: _isError,
+              visible: _isError || _publishError,
               child: Center(
                 child: Text(
                   '🤯',
@@ -161,10 +228,12 @@ class _TestResultsBodyState extends State<TestResultsBody> {
               SubmitButton(
                 enable: !_isLoading,
                 title: _isLoading ? 'Please Wait' :
-                  _isError && !_isLoading ? 'Retry' :
+                  (_isError || _publishError) ? 'Retry' :
                   'Back to Home',
-                onPressed: _isFirebaseError ? saveDataOnFirestoreServer :
-                  _isError && !_isLoading ? handleData :
+                onPressed: _isLoading ? () {} :
+                  _isFirebaseError ? saveDataOnFirestoreServer :
+                  _isError ? handleData :
+                  _publishError ? publishDataOnStreamrNetwork :
                   () => Navigator.pop(context),
               ),
             ],

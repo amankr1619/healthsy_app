@@ -1,3 +1,5 @@
+import 'package:bug_busters/handlers/dialog.dart';
+import 'package:bug_busters/models/app.dart';
 import 'package:bug_busters/screens/authenticate/login_form.dart';
 import 'package:bug_busters/services/authentication.dart';
 import 'package:bug_busters/shared/constants.dart';
@@ -23,10 +25,20 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSwitchingSigninAndRegister() {
-    setState(() {
-      _formKey.currentState.reset();
-    });
-    Navigator.pushNamed(context, register);
+    handleAlertDialog(
+      context: context,
+      textContent: AppDetails.terms,
+      title: 'Terms and Conditions',
+      actionTitle: 'Accept',
+      cancelTitle: 'Decline',
+      action: () {
+        Navigator.pop(context);
+        setState(() {
+          _formKey.currentState.reset();
+        });
+        Navigator.pushNamed(context, register);
+      },
+    );
   }
 
   void _handleSignInRequest() {
