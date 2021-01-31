@@ -1,7 +1,7 @@
 # Healthsy_App
 
 **Demo Video:** https://youtu.be/vamrzCe_WUw<br>
-**APK File:** <a href="https://drive.google.com/drive/folders/1fVnlYrMQ7uYpj_pysQRn48fU1BzjmIIo?usp=sharing">drive.google.com</a>
+**APK File:** <a href="https://drive.google.com/drive/folders/1fVnlYrMQ7uYpj_pysQRn48fU1BzjmIIo?usp=sharing">drive.google.com</a><br>
 **Website:** https://healthsy.netlify.app/<br>
 **Website Repo:** https://github.com/amankr1619/Healthsy<br>
 **ML Models Repo:** https://github.com/Aman-1701/Hack_Nagpur<br>
@@ -41,19 +41,14 @@ The models are trained in such a way that the predictions do not get biased. All
 **APK File:** <a href="https://drive.google.com/drive/folders/1fVnlYrMQ7uYpj_pysQRn48fU1BzjmIIo?usp=sharing">drive.google.com</a>
 
 ## DATASET USED:
-**Pima Indian Diabetes Dataset:** https://www.kaggle.com/uciml/pima-indians-diabetes-database
-
-**Indian Patient Liver Records:** https://www.kaggle.com/uciml/indian-liver-patient-records
-
-**Heart Disease Dataset:** https://www.kaggle.com/ronitf/heart-disease-uci
+**Pima Indian Diabetes Dataset:** https://www.kaggle.com/uciml/pima-indians-diabetes-database<br>
+**Indian Patient Liver Records:** https://www.kaggle.com/uciml/indian-liver-patient-records<br>
+**Heart Disease Dataset:** https://www.kaggle.com/ronitf/heart-disease-uci<br>
 
 ## LINKS TO DEPLOYED MODELS:
 
-**DIABETES:** 'https://mod-diabetes.herokuapp.com/';
-
-**HEART:** 'https://mod-heart.herokuapp.com/';
-
-**LIVER:** 'https://mod-liver.herokuapp.com/';
+**DIABETES:** 'https://mod-diabetes.herokuapp.com/';<br>
+**HEART:** 'https://mod-heart.herokuapp.com/';<br>
+**LIVER:** 'https://mod-liver.herokuapp.com/';<br>
 
 Note - Deployed models work only on ‘POST’ requests.
-
