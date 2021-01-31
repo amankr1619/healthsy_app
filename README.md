@@ -2,6 +2,7 @@
 
 **Demo Video:** https://youtu.be/vamrzCe_WUw<br>
 **APK File:** <a href="https://drive.google.com/drive/folders/1fVnlYrMQ7uYpj_pysQRn48fU1BzjmIIo?usp=sharing">drive.google.com</a><br>
+**Streamr API:** https://github.com/priyank-kumar-singh/healthsy-streamr-data-union<br>
 **Website:** https://healthsy.netlify.app/<br>
 **Website Repo:** https://github.com/amankr1619/Healthsy<br>
 **ML Models Repo:** https://github.com/Aman-1701/Hack_Nagpur<br>
@@ -38,6 +39,7 @@ The models are trained in such a way that the predictions do not get biased. All
 **Website:** https://healthsy.netlify.app/<br>
 **Website Repo:** https://github.com/amankr1619/Healthsy<br>
 **ML Models Repo:** https://github.com/Aman-1701/Hack_Nagpur<br>
+**Streamr API:** https://github.com/priyank-kumar-singh/healthsy-streamr-data-union<br>
 **APK File:** <a href="https://drive.google.com/drive/folders/1fVnlYrMQ7uYpj_pysQRn48fU1BzjmIIo?usp=sharing">drive.google.com</a>
 
 ## DATASET USED:
